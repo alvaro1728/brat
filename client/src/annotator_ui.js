@@ -2664,6 +2664,50 @@ var AnnotatorUI = (function($, window, undefined) {
         importForm.find('input, textarea').val('');
       });
 
+      var importWebPageForm = $('#import_web_page_form');
+      importFormSubmit = function(evt) {
+        var _docid = $('#import_web_page_docid').val();
+        var _url = $('#import_web_page_url').val();
+        var _overwrite = $('#import_web_page_overwrite').is(':checked');
+        var opts = {
+          action : 'importWebPage',
+          collection : coll,
+          docid  : _docid,
+          url  : _url,
+          overwrite: _overwrite
+        };
+        $("body").css("cursor", "progress");
+        dispatcher.post('ajax', [opts, function(response) {
+          $("body").css("cursor", "default");
+          var x = response.exception;
+          if (x) {
+            if (x == 'fileExistsError') {
+              dispatcher.post('messages', [[["A file with the given name exists. Please give a different name to the file to import.", 'error']]]);
+            } else {
+              dispatcher.post('messages', [[['Unknown error: ' + response.exception, 'error']]]);
+            }
+          } else {
+            dispatcher.post('hideForm');
+            dispatcher.post('setDocument', [response.document]);
+          }
+        }]);
+        return false;
+      };
+      importWebPageForm.submit(importFormSubmit);
+      dispatcher.post('initForm', [importWebPageForm, {
+        width: 800,
+        open: function(evt) {
+          keymap = {};
+        },
+      }]);
+      $('#import_web_page_button').click(function() {
+        dispatcher.post('hideForm');
+        dispatcher.post('showForm', [importWebPageForm]);
+        // importWebPageForm.find('input, textarea').val('');
+      });
+
+      // setTimeout(function() { dispatcher.post('showForm', [importWebPageForm]) }, 5000);
+
       var importCollForm = $('#import_coll_form');
       var importCollDone = function() {
         // TODO

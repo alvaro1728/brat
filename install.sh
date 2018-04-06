@@ -15,7 +15,8 @@ CONFIG=config.py
 
 # Absolute data and work paths
 
-base_dir=`(cd \`dirname $0\`; pwd)`
+#base_dir=`(cd \`dirname $0\`; pwd)`
+base_dir=.
 SCRIPT_NAME=`basename $0`
 
 work_dir_abs="$base_dir/$WORK_DIR"

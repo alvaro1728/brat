@@ -53,6 +53,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href="static/style-vis.css"/>
     <link rel="stylesheet" type="text/css" href="static/style-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="static/custom.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
   </head>
   <body>
@@ -147,6 +148,19 @@
         <textarea id="import_text" class="borderless"/>
       </fieldset>
     </form>
+    <form id="import_web_page_form" class="dialog" title="Import">
+      <fieldset id="import_web_page_form_docid">
+        <legend>Document ID</legend>
+        <input id="import_web_page_docid" class="borderless" />
+      </fieldset>
+      <fieldset id="import_web_page_form_text">
+        <legend>Page URL</legend>
+        <input id="import_web_page_url" class="borderless" />
+      </fieldset>
+      <div class="checklabel">
+        <input type="checkbox" id="import_web_page_overwrite" /><label for="import_web_page_overwrite">Overwrite existing document files</label>
+      </div>
+    </form>
     <form id="import_coll_form" class="dialog" title="Import collection">
       <fieldset id="import_coll_form_text">
         <legend>Collection archive (.zip, .tar.gz)</legend>
@@ -215,6 +229,7 @@
         <div class="optionRow">
           <span class="optionLabel">New document</span>
           <input id="import_button" type="button" class="login ui-button-text" value="Enter text" tabindex="-1" title="Import a new document into the current collection"/>
+          <input id="import_web_page_button" type="button" class="login ui-button-text" value="Web page" tabindex="-1" title="Get the text from a web page and import it to a new document into the current collection"/>
         </div>
         <!-- XXX Taken out until such time when serverside is
                  implemented, pending resolution of issues

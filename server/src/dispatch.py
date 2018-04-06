@@ -19,7 +19,7 @@ from auth import login, logout, whoami, NotAuthorisedError
 from common import ProtocolError
 from config import DATA_DIR
 from convert.convert import convert
-from docimport import save_import
+from docimport import save_import, save_web_page_import
 from document import (get_directory_information, get_document,
         get_document_timestamp, get_configuration)
 from download import download_file, download_collection
@@ -50,6 +50,7 @@ DISPATCHER = {
         'getDocument': get_document,
         'getDocumentTimestamp': get_document_timestamp,
         'importDocument': save_import,
+        'importWebPage': save_web_page_import,
 
         'storeSVG': store_svg,
         'retrieveStored': retrieve_stored,

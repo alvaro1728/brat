@@ -1,0 +1,7 @@
+.checklabel input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+.checklabel label {
+    vertical-align: middle;
+}
